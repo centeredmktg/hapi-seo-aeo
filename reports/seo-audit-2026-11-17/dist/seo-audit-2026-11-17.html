@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>stayhapi.com SEO Baseline</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"><style>
+/* Hapi Report DS — light design system for internal reports and plans.
+   Tokens are taken from stayhapi.com's live Webflow stylesheet
+   (staging-hapi-website2.webflow.shared.css): --dark-blue, --light-green,
+   --blue-light, --blue (mint), --grey (warm white), Gilroy + Instrument Sans.
+   Severity reads as depth of Hapi blue, not traffic-light red/amber/green. */
+
+@font-face { font-family: "Gilroy"; font-weight: 400; font-display: swap;
+  src: url("https://cdn.prod.website-files.com/6831885d98a186b5fce7fe65/6a855699668eeabe6299a40e_Gilroy-Regular.woff2") format("woff2"); }
+@font-face { font-family: "Gilroy"; font-weight: 500; font-display: swap;
+  src: url("https://cdn.prod.website-files.com/6831885d98a186b5fce7fe65/6a85569954e7d260c537271c_Gilroy-Medium.woff2") format("woff2"); }
+@font-face { font-family: "Gilroy"; font-weight: 600; font-display: swap;
+  src: url("https://cdn.prod.website-files.com/6831885d98a186b5fce7fe65/6a855699fe0b5fa7833d9e4b_Gilroy-SemiBold.woff2") format("woff2"); }
+
+:root {
+  /* Brand (from site CSS) */
+  --ink: #040447;          /* --dark-blue */
+  --periwinkle: #9eb1e5;   /* --light-green (misnamed in Webflow) */
+  --mist: #d3d9f1;         /* --blue-light */
+  --mint: #c4efda;         /* --blue (button fill) */
+  --paper: #fffdf8;        /* --grey (actually warm white) */
+  --white: #ffffff;
+  /* Derived */
+  --text: #2a2c5c;         /* ink at reading weight */
+  --text-soft: #5b5e8a;
+  --line: #e3e6f3;
+  --mist-wash: #f1f3fb;
+  --mint-deep: #1f6b4a;    /* text on mint, AA */
+
+  /* Severity = depth of blue */
+  --sev-critical-bg: var(--ink);       --sev-critical-fg: var(--white);
+  --sev-high-bg: var(--periwinkle);    --sev-high-fg: var(--ink);
+  --sev-medium-bg: var(--mist);        --sev-medium-fg: var(--ink);
+  --sev-low-bg: transparent;           --sev-low-fg: var(--text-soft);
+  --sev-done-bg: var(--mint);          --sev-done-fg: var(--mint-deep);
+
+  /* Type */
+  --font-display: "Gilroy", "Instrument Sans", Arial, sans-serif;
+  --font-body: "Instrument Sans", Arial, sans-serif;
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.3125rem;
+  --step-2: 1.75rem;
+  --step-3: 2.375rem;
+  --step-4: clamp(2.5rem, 5vw + 1rem, 4rem);
+
+  /* Space + shape (site uses 32px panels, pill buttons) */
+  --s1: 0.25rem; --s2: 0.5rem; --s3: 0.75rem; --s4: 1rem; --s5: 1.5rem;
+  --s6: 2rem; --s7: 3rem; --s8: 4.5rem; --s9: 6rem;
+  --r-panel: 32px; --r-block: 20px; --r-small: 12px; --r-pill: 100px;
+  --measure: 42rem;
+  --wide: 66rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--paper); color: var(--text);
+  font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+img, svg { max-width: 100%; }
+a { color: var(--ink); text-decoration-color: var(--periwinkle); text-underline-offset: 3px; text-decoration-thickness: 2px; }
+a:hover { text-decoration-color: var(--ink); }
+:focus-visible { outline: 3px solid var(--periwinkle); outline-offset: 3px; border-radius: 4px; }
+code { font-size: 0.9em; background: var(--mist-wash); padding: 0.1em 0.35em; border-radius: 6px; color: var(--ink); overflow-wrap: anywhere; }
+
+/* Headings: Gilroy, tight like the site's .heading-2 (-1px tracking) */
+h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink); font-weight: 500; margin: 0; }
+h1 { font-size: var(--step-4); line-height: 1.04; letter-spacing: -0.03em; }
+h2 { font-size: var(--step-3); line-height: 1.1; letter-spacing: -0.02em; }
+h3 { font-size: var(--step-1); line-height: 1.25; letter-spacing: -0.01em; font-weight: 600; }
+p { margin: 0 0 var(--s4); }
+ul, ol { padding-left: 1.2em; margin: 0 0 var(--s4); }
+li { margin-bottom: var(--s2); }
+strong { color: var(--ink); font-weight: 600; }
+
+/* Layout */
+/* Reading column shares the wide grid's left edge: one alignment line down the page */
+.wrap { width: min(100% - 2rem, var(--wide)); margin-inline: auto; }
+.wrap > * { max-width: var(--measure); }
+.wrap--wide { width: min(100% - 2rem, var(--wide)); margin-inline: auto; }
+.section { padding-block: var(--s8) 0; }
+.section > .wrap > h2, .section > .wrap--wide > h2 { margin-bottom: var(--s5); }
+.lede { font-size: var(--step-1); line-height: 1.5; color: var(--ink); }
+.muted { color: var(--text-soft); }
+.small { font-size: var(--step--1); }
+
+/* Masthead: the site's navy band with the periwinkle glow */
+.masthead {
+  background:
+    radial-gradient(60% 90% at 78% 30%, rgba(158,177,229,.75), transparent 70%),
+    radial-gradient(50% 70% at 30% 100%, rgba(211,217,241,.35), transparent 70%),
+    var(--ink);
+  color: var(--white);
+  padding: var(--s6) 0 var(--s8);
+  border-radius: 0 0 var(--r-panel) var(--r-panel);
+}
+.masthead h1 { color: var(--white); max-width: 16ch; margin-top: var(--s8); }
+.masthead .lede { color: var(--mist); max-width: 34rem; margin-top: var(--s5); }
+.masthead__bar { display: flex; justify-content: space-between; align-items: center; gap: var(--s4); flex-wrap: wrap; }
+.wordmark { font-family: var(--font-display); font-weight: 600; font-size: 1.5rem; letter-spacing: -0.02em; color: var(--white); }
+.meta { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s5); margin-top: var(--s6); color: var(--mist); font-size: var(--step--1); }
+.meta dt { color: var(--periwinkle); }
+.meta dd { margin: 0; color: var(--white); }
+.meta div { display: grid; gap: 2px; }
+
+/* Pills / chips */
+.pill { display: inline-flex; align-items: center; gap: var(--s2); border-radius: var(--r-pill);
+  padding: 0.3rem 0.85rem; font-size: var(--step--1); font-weight: 600; line-height: 1.2; white-space: nowrap; }
+.pill--mint { background: var(--mint); color: var(--ink); }
+.pill--outline { border: 1.5px solid currentColor; }
+
+.sev { display: inline-block; border-radius: var(--r-pill); padding: 0.2rem 0.7rem; font-size: 0.8125rem; font-weight: 600; letter-spacing: .01em; }
+.sev--critical { background: var(--sev-critical-bg); color: var(--sev-critical-fg); }
+.sev--high { background: var(--sev-high-bg); color: var(--sev-high-fg); }
+.sev--medium { background: var(--sev-medium-bg); color: var(--sev-medium-fg); }
+.sev--low { background: var(--sev-low-bg); color: var(--sev-low-fg); box-shadow: inset 0 0 0 1.5px var(--line); }
+.sev--done { background: var(--sev-done-bg); color: var(--sev-done-fg); }
+
+/* Finding: left rail carries severity depth */
+.finding { position: relative; padding: var(--s5) 0 var(--s5) var(--s5); border-left: 6px solid var(--line); margin-bottom: var(--s5); }
+.finding--critical { border-left-color: var(--ink); }
+.finding--high { border-left-color: var(--periwinkle); }
+.finding--medium { border-left-color: var(--mist); }
+.finding > :last-child { margin-bottom: 0; }
+.finding__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s2) var(--s3); margin-bottom: var(--s3); }
+.finding__head h3 { flex: 1 1 20rem; }
+.finding__facts { display: grid; grid-template-columns: max-content 1fr; gap: var(--s2) var(--s4); margin: var(--s4) 0 0; font-size: var(--step--1); }
+.finding__facts dt { color: var(--text-soft); font-weight: 600; }
+.finding__facts dd { margin: 0; }
+@media (max-width: 560px) { .finding__facts { grid-template-columns: 1fr; } .finding__facts dd { margin-bottom: var(--s2); } }
+
+/* Callout */
+.callout { background: var(--mist-wash); border-radius: var(--r-block); padding: var(--s5); margin: var(--s5) 0; }
+.callout--mint { background: color-mix(in srgb, var(--mint) 45%, var(--paper)); }
+.callout > :last-child { margin-bottom: 0; }
+
+/* Score table */
+.scores { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+.scores th { text-align: left; font-weight: 600; color: var(--text-soft); padding: var(--s2) var(--s3) var(--s2) 0; border-bottom: 1.5px solid var(--line); }
+.scores td { padding: var(--s3) var(--s3) var(--s3) 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.scores td.num { font-family: var(--font-display); font-size: var(--step-1); color: var(--ink); font-weight: 500; white-space: nowrap; }
+.bar { height: 8px; border-radius: var(--r-pill); background: var(--mist-wash); overflow: hidden; min-width: 5rem; margin-top: 0.6rem; }
+.bar > span { display: block; height: 100%; background: var(--ink); border-radius: inherit; }
+.table-scroll { overflow-x: auto; }
+
+/* Page map: one dot per page */
+.pagemap { background: var(--white); border-radius: var(--r-panel); padding: var(--s6); box-shadow: 0 0 0 1px var(--line); }
+.pagemap__group + .pagemap__group { margin-top: var(--s6); }
+.pagemap__label { display: flex; justify-content: space-between; gap: var(--s4); font-size: var(--step--1); margin-bottom: var(--s3); flex-wrap: wrap; }
+.pagemap__label strong { font-family: var(--font-display); font-weight: 600; font-size: var(--step-0); }
+.dots { display: flex; flex-wrap: wrap; gap: 5px; }
+.dot { width: 14px; height: 14px; border-radius: 50%; display: block; }
+.dot--empty { background: var(--ink); }
+.dot--ok { background: var(--mint); }
+.dot--fail { background: transparent; box-shadow: inset 0 0 0 2px var(--periwinkle); }
+.legend { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s5); margin-top: var(--s5); font-size: var(--step--1); color: var(--text-soft); }
+.legend span { display: inline-flex; align-items: center; gap: var(--s2); }
+
+/* Timeline (real sequence: 30/60/90) */
+.phases { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: var(--s4); counter-reset: phase; }
+.phase { background: var(--white); border-radius: var(--r-block); padding: var(--s5); box-shadow: 0 0 0 1px var(--line); }
+.phase:first-child { background: var(--ink); color: var(--mist); box-shadow: none; }
+.phase:first-child h3, .phase:first-child strong { color: var(--white); }
+.phase__when { font-family: var(--font-display); font-size: var(--step-2); color: var(--periwinkle); line-height: 1; margin-bottom: var(--s2); }
+.phase:first-child .phase__when { color: var(--mint); }
+.phase h3 { margin-bottom: var(--s3); }
+.phase ul { font-size: var(--step--1); margin: 0; }
+
+/* Stat row (used sparingly) */
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: var(--s4); margin: var(--s5) 0; }
+.fact { border-top: 2px solid var(--ink); padding-top: var(--s3); }
+.fact b { display: block; font-family: var(--font-display); font-size: var(--step-2); font-weight: 500; color: var(--ink); line-height: 1.1; }
+.fact span { font-size: var(--step--1); color: var(--text-soft); }
+
+.footer { margin-top: var(--s9); padding-block: var(--s6); border-top: 1px solid var(--line); font-size: var(--step--1); color: var(--text-soft); }
+
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+@media print {
+  body { background: #fff; font-size: 11pt; }
+  .masthead { border-radius: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .section { padding-top: 1.5rem; break-inside: avoid-page; }
+  .finding, .phase, .pagemap { break-inside: avoid; }
+  .dot, .sev, .phase:first-child, .bar > span { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  a { text-decoration: none; }
+}
+
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap--wide">
+    <div class="masthead__bar">
+      <span class="wordmark">hapi</span>
+      <span class="pill pill--mint">Internal baseline</span>
+    </div>
+    <h1>Most of our site is invisible to search, and it's a two-hour fix to start.</h1>
+    <p class="lede">An SEO audit of all 246 pages on stayhapi.com. The site's positioning and writing are solid. Two unfinished Webflow templates are holding it back, and they generate 90% of our URLs.</p>
+    <dl class="meta">
+      <div><dt>Prepared by</dt><dd>Danny Cox, Head of Marketing</dd></div>
+      <div><dt>Date</dt><dd>November 17, 2026</dd></div>
+      <div><dt>Scope</dt><dd>All 246 sitemap URLs, 11 checks</dd></div>
+      <div><dt>Health score</dt><dd>49 / 100</dd></div>
+    </dl>
+  </div>
+</header>
+
+<main>
+
+<section class="section" aria-labelledby="map">
+  <div class="wrap--wide">
+    <h2 id="map">Every resource and connection page, one dot each</h2>
+    <p class="muted" style="max-width:var(--measure)">146 of our 223 CMS pages publish with an empty page title and no meta description. Google writes its own titles for them, usually from a bare heading like "Mews." These include the IHG case study, the Nemacolin story and both Oracle OPERA pages. Hover a dot to see the page.</p>
+    <div class="pagemap" role="group" aria-label="Every CMS page by title status">
+<div class="pagemap__group">
+<div class="pagemap__label"><strong>/resources</strong><span>101 of 166 with no title</span></div><div class="dots">
+<span class="dot dot--empty" title="beyond-dashboards-how-hotels-can-turn-connected-data-into-better-decisions: no title"></span>
+<span class="dot dot--empty" title="ai-orchestration-framework-for-hospitality: no title"></span>
+<span class="dot dot--empty" title="ai-ready-hospitality-data-framework: no title"></span>
+<span class="dot dot--empty" title="building-the-ultimate-guest-journey-how-rocco-forte-hotels-connects-data-across-properties-to-gain-insight: no title"></span>
+<span class="dot dot--empty" title="centralization-adapting-operations-to-lower-occupancy: no title"></span>
+<span class="dot dot--empty" title="connecting-data-to-elevate-guest-experiences-with-jeff-bzdawka: no title"></span>
+<span class="dot dot--empty" title="contactless-demand-drives-new-hapi-opera-ows-integration: no title"></span>
+<span class="dot dot--empty" title="data-travel-announces-hapi-guest-focus-on-salesforce-appexchange-the-worlds-leading-enterprise-cloud-marketplace: no title"></span>
+<span class="dot dot--empty" title="direction-for-the-revolution-industry-groups-exchange-ideas-on-the-intelligent-use-of-ai-in-hospitality: no title"></span>
+<span class="dot dot--empty" title="driving-ai-in-the-hotel-industry-the-importance-of-data: no title"></span>
+<span class="dot dot--empty" title="embracing-the-multi-pms-era-how-hapi-facilitates-seamless-data-integration-for-hotel-companies: no title"></span>
+<span class="dot dot--empty" title="get-hapi-with-your-hotel-data-a-modern-solution-built-on-aws: no title"></span>
+<span class="dot dot--empty" title="exploring-mdm-vs-cdp-in-hospitality: no title"></span>
+<span class="dot dot--empty" title="hapi-adds-shiji-infrasys-point-of-sale-to-its-growing-list-of-data-integration-partners: no title"></span>
+<span class="dot dot--empty" title="hapi-and-addappation-partner-to-transform-data-into-powerful-applications: no title"></span>
+<span class="dot dot--empty" title="hapi-ahla-launch-htng-express-to-accelerate-innovation: no title"></span>
+<span class="dot dot--empty" title="hapi-and-nemacolin-resort-win-the-prestigious-2024-hospitality-technology-visionary-partnership-award: no title"></span>
+<span class="dot dot--empty" title="hapi-and-nemacolin-resort-win-the-prestigious-2024-hospitality-technology-visionary-partnership-award-298fa: no title"></span>
+<span class="dot dot--empty" title="hapi-and-revinate-team-up-to-enable-hoteliers-to-drive-direct-bookings-quickly-and-at-scale: no title"></span>
+<span class="dot dot--empty" title="hapi-attending-both-the-hitec-toronto-show-and-the-hospitality-show-las-vegas: no title"></span>
+<span class="dot dot--empty" title="hapi-appoints-jaffrey-ali-as-chief-product-officer: no title"></span>
+<span class="dot dot--empty" title="hapi-celebrates-continued-company-team-growth-in-2023: no title"></span>
+<span class="dot dot--empty" title="hapi-ceo-luis-segredo-named-chair-of-the-2025-ahla-global-technology-100: no title"></span>
+<span class="dot dot--empty" title="hapi-ceo-luis-segredo-to-join-htngs-executive-leadership-group: no title"></span>
+<span class="dot dot--empty" title="hapi-ceo-shares-how-hotels-can-go-from-ai-ready-to-ai-enabled: no title"></span>
+<span class="dot dot--empty" title="hapi-connects-sevenrooms-salesforce-to-drive-personalization-at-crystalbrook: no title"></span>
+<span class="dot dot--empty" title="hapi-congratulates-sh-hotels-resorts-on-its-hotel-visionary-award-for-innovative-guest-experience-solution: no title"></span>
+<span class="dot dot--empty" title="hapi-enhances-your-hotels-loyalty-program: no title"></span>
+<span class="dot dot--empty" title="hapi-guest-named-top-3-finalist-in-htngs-techovation-awards: no title"></span>
+<span class="dot dot--empty" title="hapi-hits-growth-spurt-adds-customers-and-team-members: no title"></span>
+<span class="dot dot--empty" title="hapi-integration-platform-is-now-available-on-oracle-cloud-marketplace: no title"></span>
+<span class="dot dot--empty" title="hapi-launches-folio-finder: no title"></span>
+<span class="dot dot--empty" title="hapi-hits-milestone-growth-steps-in-2021: no title"></span>
+<span class="dot dot--empty" title="hapi-joins-the-margaritaville-revenue-marketing-team-for-summit-in-cancun: no title"></span>
+<span class="dot dot--empty" title="hapi-launches-new-payment-automations: no title"></span>
+<span class="dot dot--empty" title="hapi-named-best-hotel-marketplace-integrator-by-hoteltechreport: no title"></span>
+<span class="dot dot--empty" title="hapi-names-new-head-of-strategic-accounts-to-ensure-customer-success: no title"></span>
+<span class="dot dot--empty" title="hapi-people-meet-martin-sestak-platform-implementation-manager: no title"></span>
+<span class="dot dot--empty" title="hapi-people-spotlight-ben-heiland: no title"></span>
+<span class="dot dot--empty" title="hapi-people-spotlight-dima-kovalov: no title"></span>
+<span class="dot dot--empty" title="hapi-people-spotlight-aya-mckeen: no title"></span>
+<span class="dot dot--empty" title="hapi-people-spotlight-kim-bilotto: no title"></span>
+<span class="dot dot--empty" title="hapi-perspectives: no title"></span>
+<span class="dot dot--empty" title="hapi-people-spotlight-oli-dizon: no title"></span>
+<span class="dot dot--empty" title="hapi-stayntouch-partner-to-improve-hotel-data-access: no title"></span>
+<span class="dot dot--empty" title="hapiconnectforsalesforce: no title"></span>
+<span class="dot dot--empty" title="hapiappointscoo: no title"></span>
+<span class="dot dot--empty" title="hapiathedna2019: no title"></span>
+<span class="dot dot--empty" title="hapi-well-positioned-to-continue-accelerated-growth-in-2023: no title"></span>
+<span class="dot dot--empty" title="hapi-taps-two-hospitality-technology-veterans-for-vp-roles: no title"></span>
+<span class="dot dot--empty" title="hapiness: no title"></span>
+<span class="dot dot--empty" title="hapis-connector-app-for-salesforce-goes-next-level: no title"></span>
+<span class="dot dot--empty" title="hapisimplification: no title"></span>
+<span class="dot dot--empty" title="hospitality-crm-a-hoteliers-guide-to-learning-salesforce: no title"></span>
+<span class="dot dot--empty" title="hapis-customer-success-efforts-shine-through-hotel-tech-report: no title"></span>
+<span class="dot dot--empty" title="hotel-brands-miss-opportunity-to-build-guest-connections: no title"></span>
+<span class="dot dot--empty" title="hospitality-crm-past-present-and-future: no title"></span>
+<span class="dot dot--empty" title="hoteliers-be-prepared-for-incredible-growth-ahead: no title"></span>
+<span class="dot dot--empty" title="hotel-m-a-navigating-technical-hurdles-and-driving-portfolio-growth: no title"></span>
+<span class="dot dot--empty" title="how-a-cdp-will-shape-the-future-of-hotel-marketing: no title"></span>
+<span class="dot dot--empty" title="how-centralized-data-powers-sonestas-award-winning-loyalty-program: no title"></span>
+<span class="dot dot--empty" title="how-data-can-bridge-the-gap-between-technology-and-operations: no title"></span>
+<span class="dot dot--empty" title="how-hyatt-powers-an-innovative-digital-guest-experience-with-real-time-data: no title"></span>
+<span class="dot dot--empty" title="how-ihg-turned-checkout-into-a-smooth-contactless-moment-across-3-600-hotels: no title"></span>
+<span class="dot dot--empty" title="how-nemacolin-unified-guest-data-to-deliver-truly-personalized-luxury-experiences: no title"></span>
+<span class="dot dot--empty" title="how-to-build-a-true-personalized-omnichannel-guest-journey-at-scale: no title"></span>
+<span class="dot dot--empty" title="how-to-launch-the-next-best-hotel-tech-solution: no title"></span>
+<span class="dot dot--empty" title="ihg-sonesta-nemacolin-speak-on-stage-on-how-a-modern-data-strategy-is-critical-to-success: no title"></span>
+<span class="dot dot--empty" title="ihg-hotels-resorts: no title"></span>
+<span class="dot dot--empty" title="innovation-accelerated: no title"></span>
+<span class="dot dot--empty" title="ivvy-turns-to-hapi-to-centralize-sales-and-catering-data: no title"></span>
+<span class="dot dot--empty" title="jeff-bzdawka-named-hapi-ceo: no title"></span>
+<span class="dot dot--empty" title="jeff-bzdawka-joins-hapi-as-president: no title"></span>
+<span class="dot dot--empty" title="maestro-pms-and-hapi-streamline-salesforce-connectivity-for-margaritaville-hotel: no title"></span>
+<span class="dot dot--empty" title="laasie-hapi-connection-powers-modern-hotel-loyalty: no title"></span>
+<span class="dot dot--empty" title="margaritaville-partners-with-hapi-for-total-customer-data-strategy: no title"></span>
+<span class="dot dot--empty" title="nemacolin-turns-to-hapi-for-salesforce-crm-deployment: no title"></span>
+<span class="dot dot--empty" title="new-hapi-apps-accelerate-value-delivery-for-hotel-companies-using-salesforce: no title"></span>
+<span class="dot dot--empty" title="next-generation-of-hapi-solves-for-hotel-data-integrations-at-scale: no title"></span>
+<span class="dot dot--empty" title="operto-accelerates-pms-connectivity-with-hapi-integration-platform: no title"></span>
+<span class="dot dot--empty" title="pms-the-heart-of-the-hospitality-operating-environment: no title"></span>
+<span class="dot dot--empty" title="realtime-reservation-accelerates-pms-connectivity-with-hapi-integration-platform: no title"></span>
+<span class="dot dot--empty" title="realtimedatastream: no title"></span>
+<span class="dot dot--empty" title="recognition-over-rewards: no title"></span>
+<span class="dot dot--empty" title="seven-best-practices-of-award-winning-hospitality-brands: no title"></span>
+<span class="dot dot--empty" title="segredo-how-technology-will-power-hospitalitys-recovery: no title"></span>
+<span class="dot dot--empty" title="the-2026-pms-api-study: no title"></span>
+<span class="dot dot--empty" title="solving-hotel-tech-integrations-challenges-one-step-at-a-time: no title"></span>
+<span class="dot dot--empty" title="the-guest-journey-in-a-contactless-era: no title"></span>
+<span class="dot dot--empty" title="the-integration-layer-is-your-hedge-against-an-unpredictable-future: no title"></span>
+<span class="dot dot--empty" title="the-most-powerful-builders-in-travel-ezn10: no title"></span>
+<span class="dot dot--empty" title="top-floor-podcast---250-hitec-san-antonio-part-1: no title"></span>
+<span class="dot dot--empty" title="unlocking-the-data-behind-ihgs-cutting-edge-loyalty-functionality: no title"></span>
+<span class="dot dot--empty" title="unlocking-the-data-behind-ihgs-cutting-edge-loyalty-functionality-b8a3c: no title"></span>
+<span class="dot dot--empty" title="visual-matrix-expands-data-centralization-capabilities-for-hapi: no title"></span>
+<span class="dot dot--empty" title="urvenue-accelerates-pms-connectivity-with-hapi-integrations-platform: no title"></span>
+<span class="dot dot--empty" title="new-hapi-sandbox-pms-makes-integration-testing-a-joy: no title"></span>
+<span class="dot dot--empty" title="what-hitec-2026-revealed-about-the-future-of-hotel-technology: no title"></span>
+<span class="dot dot--empty" title="why-decision-velocity-is-the-only-metric-that-matters-in-the-ai-era: no title"></span>
+<span class="dot dot--empty" title="why-guest-data-still-fails-at-the-moment-it-matters-most: no title"></span>
+<span class="dot dot--empty" title="why-hapi-is-essential-for-implementing-salesforce-data-cloud-in-the-hotel-industry: no title"></span>
+<span class="dot dot--fail" title="ai-in-hospitality-2026-why-data-has-to-come-before-the-algorithm: did not load"></span>
+<span class="dot dot--fail" title="a-lack-of-enterprise-visibility-is-costing-hotels-loyalty-and-revenue: did not load"></span>
+<span class="dot dot--fail" title="8-best-crm-software-for-hotels-in-2025: did not load"></span>
+<span class="dot dot--fail" title="4-tips-for-choosing-a-solution-to-optimize-your-guest-data: did not load"></span>
+<span class="dot dot--fail" title="6-simple-steps-to-implementing-a-data-driven-personalization-strategy: did not load"></span>
+<span class="dot dot--fail" title="ai-for-hotels-how-to-use-it-without-a-costly-tech-overhaul: did not load"></span>
+<span class="dot dot--ok" title="ai-in-hospitality-why-data-matters-more-than-ever: has title"></span>
+<span class="dot dot--ok" title="all-about-apis-the-future-of-integrated-technology-f0e57: has title"></span>
+<span class="dot dot--ok" title="behind-sonestas-rapid-expansion-the-data-platform-that-makes-it-possible: has title"></span>
+<span class="dot dot--ok" title="beyond-the-pms-debate-why-connectivity-may-be-hospitalitys-biggest-innovation-challenge: has title"></span>
+<span class="dot dot--ok" title="celebrating-5-wins-hospitality-technology-visionary-awards: has title"></span>
+<span class="dot dot--ok" title="breaking-down-data-silos-in-hospitality-the-case-for-a-unified-data-layer: has title"></span>
+<span class="dot dot--ok" title="bringing-hospitality-tech-together-the-hotelkey-and-hapi-integration-story: has title"></span>
+<span class="dot dot--ok" title="data-lakehouse-vs-cdp-whats-the-difference-for-hotel-groups: has title"></span>
+<span class="dot dot--ok" title="data-as-a-utility-the-key-to-unlocking-modern-data-strategies-in-hospitality: has title"></span>
+<span class="dot dot--ok" title="elevating-guest-experiences-how-crystalbrook-collection-uses-hapi-to-unify-sevenrooms-and-salesforce: has title"></span>
+<span class="dot dot--ok" title="from-data-struggles-to-marketing-success-great-wolf-resorts-95-data-refresh-improvement-with-hapi-guest: has title"></span>
+<span class="dot dot--ok" title="guest-identity-vs-crm-whats-the-difference: has title"></span>
+<span class="dot dot--ok" title="guest-service-is-no-longer-a-contact-sport-5fd24: has title"></span>
+<span class="dot dot--ok" title="hapi-and-revinate-partner: has title"></span>
+<span class="dot dot--ok" title="hapi-and-revinate-report-finds-trends-in-how-hoteliers-manage-data: has title"></span>
+<span class="dot dot--ok" title="hapi-and-revinate-team-up-to-enable-hoteliers-to-drive-direct-bookings-quickly-and-at-scale-a2506: has title"></span>
+<span class="dot dot--ok" title="hapi-and-upgrade-partner-to-help-hotels-deploy-modern-payment-options-at-scale-with-flex-pay: has title"></span>
+<span class="dot dot--ok" title="hapi-applauds-ihgs-hotel-visionary-award-for-guest-experience-innovation: has title"></span>
+<span class="dot dot--ok" title="hapi-ceo-luis-segredo-named-chair-of-the-2025-ahla-global-technology-100---also-cover-on-website: has title"></span>
+<span class="dot dot--ok" title="hapi-eliminates-the-guesswork-by-connecting-guest-identity-across-hotel-systems: has title"></span>
+<span class="dot dot--ok" title="hapi-named-as-one-of-2-potential-game-changers-in-the-hospitality-technology-industry: has title"></span>
+<span class="dot dot--ok" title="hapi-partners-with-revinate-to-boost-hoteliers-direct-booking-capabilities: has title"></span>
+<span class="dot dot--ok" title="hapi-people-spotlight-joe-monette: has title"></span>
+<span class="dot dot--ok" title="hapi-people-spotlight-micaela-lara: has title"></span>
+<span class="dot dot--ok" title="hapi-people-spotlight-natacha-shu: has title"></span>
+<span class="dot dot--ok" title="hapi-people-spotlight-wayne-borce: has title"></span>
+<span class="dot dot--ok" title="hapi-reaches-new-heights-as-hotels-demand-smooth-real-time-access-to-critical-data: has title"></span>
+<span class="dot dot--ok" title="hm-exclusive-nearly-50-of-hoteliers-struggle-to-access-critical-data: has title"></span>
+<span class="dot dot--ok" title="hospitality-crm-a-hoteliers-guide-to-learning-salesforce-65f94: has title"></span>
+<span class="dot dot--ok" title="how-big-data-can-drive-hotel-value-and-loyalty: has title"></span>
+<span class="dot dot--ok" title="how-fragmented-hotel-tech-is-affecting-operations-and-guest-satisfaction: has title"></span>
+<span class="dot dot--ok" title="how-hotels-can-make-ai-work-for-them-overcoming-legacy-system-challenges: has title"></span>
+<span class="dot dot--ok" title="how-langham-uses-data-to-provide-unmatched-luxury: has title"></span>
+<span class="dot dot--ok" title="how-modern-hotel-payment-workflows-shape-the-guest-experience: has title"></span>
+<span class="dot dot--ok" title="innovation-in-hospitality-starts-with-strong-partnerships: has title"></span>
+<span class="dot dot--ok" title="integration-layer-strategy-the-real-barrier-to-hotel-innovation: has title"></span>
+<span class="dot dot--ok" title="loyalty-program-readiness-quiz: has title"></span>
+<span class="dot dot--ok" title="margaritaville-partners-with-hapi-for-total-customer-data-strategy-2: has title"></span>
+<span class="dot dot--ok" title="meet-the-hapi-revenue-growth-team-people-whove-worked-the-other-side-of-the-desk: has title"></span>
+<span class="dot dot--ok" title="powering-mobile-key-at-scale-how-hyatt-enhances-the-digital-guest-journey-with-hapi: has title"></span>
+<span class="dot dot--ok" title="product-or-plumbing-where-should-your-ai-velocity-go: has title"></span>
+<span class="dot dot--ok" title="q-a-with-jeff-bzdawka-hapi-president: has title"></span>
+<span class="dot dot--ok" title="real-time-data-can-serve-as-a-differentiator-for-hotel-brands: has title"></span>
+<span class="dot dot--ok" title="recognition-matters-bridging-the-loyalty-gap-in-hospitality: has title"></span>
+<span class="dot dot--ok" title="red-lion-hotels-corporation-expedited-integration: has title"></span>
+<span class="dot dot--ok" title="rocco-forte-building-the-ultimate-guest-journey: has title"></span>
+<span class="dot dot--ok" title="ryan-brough-has-been-appointed-senior-vice-president-of-revenue-and-growth: has title"></span>
+<span class="dot dot--ok" title="tech-talk-international-hospitality-technology-hall-of-fame-inductee-luis-segredo-on-driving-innovation: has title"></span>
+<span class="dot dot--ok" title="the-evolving-nature-of-the-relationship-between-hotels-and-their-tech-partners: has title"></span>
+<span class="dot dot--ok" title="the-future-of-hotel-data: has title"></span>
+<span class="dot dot--ok" title="the-future-of-hotel-data-webinar: has title"></span>
+<span class="dot dot--ok" title="the-great-reset-start-reshaping-the-guest-experience-now: has title"></span>
+<span class="dot dot--ok" title="the-real-time-data-problem-in-hospitality-and-why-it-matters: has title"></span>
+<span class="dot dot--ok" title="the-right-message-at-the-right-time-revolutionizing-hotel-stays-with-kipsu-and-hapi: has title"></span>
+<span class="dot dot--ok" title="we-can-lead-your-ai-to-data-but-we-cant-make-it-think: has title"></span>
+<span class="dot dot--ok" title="why-custom-integrations-are-hurting-your-product-roadmap---and-your-growth: has title"></span>
+<span class="dot dot--ok" title="where-are-you-on-the-ai-grid: has title"></span>
+<span class="dot dot--ok" title="what-we-heard-at-hitec-2026-the-hospitality-data-conversations-shaping-the-year-ahead: has title"></span>
+<span class="dot dot--ok" title="why-cant-i-just-build-this-with-ai-what-hotel-brands-need-to-know: has title"></span>
+</div></div>
+<div class="pagemap__group">
+<div class="pagemap__label"><strong>/connections</strong><span>45 of 57 with no title</span></div><div class="dots">
+<span class="dot dot--empty" title="amica: no title"></span>
+<span class="dot dot--empty" title="alliants: no title"></span>
+<span class="dot dot--empty" title="agilysys: no title"></span>
+<span class="dot dot--empty" title="asi-pms: no title"></span>
+<span class="dot dot--empty" title="aven-hospitality: no title"></span>
+<span class="dot dot--empty" title="book4time: no title"></span>
+<span class="dot dot--empty" title="aws: no title"></span>
+<span class="dot dot--empty" title="clairvoyix: no title"></span>
+<span class="dot dot--empty" title="capillary: no title"></span>
+<span class="dot dot--empty" title="flip-to: no title"></span>
+<span class="dot dot--empty" title="duve: no title"></span>
+<span class="dot dot--empty" title="guesthub: no title"></span>
+<span class="dot dot--empty" title="helloshift: no title"></span>
+<span class="dot dot--empty" title="horizon-cdp: no title"></span>
+<span class="dot dot--empty" title="hotel-iq-decision-cloud: no title"></span>
+<span class="dot dot--empty" title="infor: no title"></span>
+<span class="dot dot--empty" title="hotelkey: no title"></span>
+<span class="dot dot--empty" title="juyo-analytics: no title"></span>
+<span class="dot dot--empty" title="kipsu: no title"></span>
+<span class="dot dot--empty" title="laso: no title"></span>
+<span class="dot dot--empty" title="loungeup: no title"></span>
+<span class="dot dot--empty" title="mews: no title"></span>
+<span class="dot dot--empty" title="medallia: no title"></span>
+<span class="dot dot--empty" title="micrometrics: no title"></span>
+<span class="dot dot--empty" title="oaky: no title"></span>
+<span class="dot dot--empty" title="operto-guest-technologies: no title"></span>
+<span class="dot dot--empty" title="opentable: no title"></span>
+<span class="dot dot--empty" title="opstech-pro: no title"></span>
+<span class="dot dot--empty" title="oracle: no title"></span>
+<span class="dot dot--empty" title="maestro: no title"></span>
+<span class="dot dot--empty" title="oracle-opera-v5-pms: no title"></span>
+<span class="dot dot--empty" title="polyapi: no title"></span>
+<span class="dot dot--empty" title="realtime-reservation: no title"></span>
+<span class="dot dot--empty" title="rest: no title"></span>
+<span class="dot dot--empty" title="resort-data-processing-pms: no title"></span>
+<span class="dot dot--empty" title="revinate: no title"></span>
+<span class="dot dot--empty" title="saba-hospitality: no title"></span>
+<span class="dot dot--empty" title="salesforce: no title"></span>
+<span class="dot dot--empty" title="securepay: no title"></span>
+<span class="dot dot--empty" title="sevenrooms: no title"></span>
+<span class="dot dot--empty" title="shiji: no title"></span>
+<span class="dot dot--empty" title="sms: no title"></span>
+<span class="dot dot--empty" title="stayntouch: no title"></span>
+<span class="dot dot--empty" title="the-guest-book: no title"></span>
+<span class="dot dot--empty" title="urvenue: no title"></span>
+<span class="dot dot--ok" title="canary-technologies: has title"></span>
+<span class="dot dot--ok" title="eleven-wifi: has title"></span>
+<span class="dot dot--ok" title="hudini-mobile-app: has title"></span>
+<span class="dot dot--ok" title="purple-wifi: has title"></span>
+<span class="dot dot--ok" title="revinate-surveys: has title"></span>
+<span class="dot dot--ok" title="sevenrooms-2: has title"></span>
+<span class="dot dot--ok" title="shiji-2: has title"></span>
+<span class="dot dot--ok" title="shiji-reviewpro: has title"></span>
+<span class="dot dot--ok" title="social: has title"></span>
+<span class="dot dot--ok" title="treasure-data: has title"></span>
+<span class="dot dot--ok" title="upsellguru: has title"></span>
+<span class="dot dot--ok" title="visual-matrix: has title"></span>
+</div></div>
+<div class="legend"><span><i class="dot dot--empty"></i>No title or description</span><span><i class="dot dot--ok"></i>Has a title</span><span><i class="dot dot--fail"></i>Did not load (rate limited)</span></div></div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="why">
+  <div class="wrap">
+    <h2 id="why">Why this matters beyond SEO</h2>
+    <p>The 57 <code>/connections</code> pages are where a hotel or tech vendor checks whether we work with their systems. They're the closest thing we have to a storefront, and they are the weakest part of the site today:</p>
+    <div class="facts">
+      <div class="fact"><b>45 of 57</b><span>have no page title</span></div>
+      <div class="fact"><b>~97%</b><span>of each page is shared template text</span></div>
+      <div class="fact"><b>36</b><span>show "Data Streams: No items found"</span></div>
+    </div>
+    <p>Fixing these pages is SEO cleanup, and it's also the groundwork for any self-serve or partner-led motion. Someone who finds us through "[their PMS] integration" should land on a page that answers what flows, how fast, and who already runs it.</p>
+    <div class="callout callout--mint">
+      <p><strong>Our content already ranks, just not on our site.</strong> Copies of our press releases on Hospitality Net, Hotel-Online and Hotel Tech Report show up for four of six category searches we tested. hoteltech.review lists Hapi first among hotel API integration platforms, but doesn't link to us. Publishing on stayhapi.com first, then syndicating, captures rankings we've already earned.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="scores">
+  <div class="wrap">
+    <h2 id="scores">Scorecard</h2>
+    <div class="table-scroll">
+    <table class="scores">
+      <thead><tr><th>Area</th><th>Score</th><th>What's driving it</th></tr></thead>
+      <tbody>
+        <tr><td>On-page<div class="bar"><span style="width:36%"></span></div></td><td class="num">36</td><td>146 pages with no title or description</td></tr>
+        <tr><td>Structured data<div class="bar"><span style="width:12%"></span></div></td><td class="num">12</td><td>No Organization, Article or Product markup anywhere</td></tr>
+        <tr><td>AI search readiness<div class="bar"><span style="width:49%"></span></div></td><td class="num">49</td><td>"Hapi" isn't clearly one company to search engines; product pages have no quotable facts</td></tr>
+        <tr><td>Images<div class="bar"><span style="width:55%"></span></div></td><td class="num">55</td><td>Modern formats, but every image has empty alt text</td></tr>
+        <tr><td>Technical<div class="bar"><span style="width:58%"></span></div></td><td class="num">58</td><td>Indexing basics pass; old /products links, duplicate pages</td></tr>
+        <tr><td>Content<div class="bar"><span style="width:58%"></span></div></td><td class="num">58</td><td>Strong product copy and case studies; ~18 posts with no body</td></tr>
+        <tr><td>Performance (lab)<div class="bar"><span style="width:70%"></span></div></td><td class="num">~70</td><td>Hero images load late; a 2.9MB GIF on one product page</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="small muted" style="margin-top:var(--s4)">Weighted health score: 49 / 100.</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="fix">
+  <div class="wrap">
+    <h2 id="fix">What to fix, in order</h2>
+
+    <article class="finding finding--critical">
+      <div class="finding__head"><span class="sev sev--critical">Critical</span><h3>Bind page titles and descriptions in the two CMS templates</h3></div>
+      <p>101 resources and 45 connection pages ship with <code>&lt;title&gt;&lt;/title&gt;</code>. In Webflow's Collection template settings, bind SEO title, meta description and the social tags to CMS fields with a fallback to the item name.</p>
+      <dl class="finding__facts">
+        <dt>Effort</dt><dd>About an hour per template</dd>
+        <dt>We'll know it worked</dt><dd>A re-run of the page check shows zero empty titles, and Search Console impressions for these pages rise within six weeks</dd>
+        <dt>Unblocks</dt><dd>Every other content and integration-page fix below</dd>
+      </dl>
+    </article>
+
+    <article class="finding finding--critical">
+      <div class="finding__head"><span class="sev sev--critical">Critical</span><h3>Publish the 2026 PMS API Study, and the other empty posts</h3></div>
+      <p>About 18 resource pages are a headline and a date with no body, including the PMS API Study and the AI-Ready Data Framework. Every article links to the study through Related Posts, so a dead end is linked from every article. Original research is the asset most likely to earn links and AI citations, and a competitor's 2026 PMS API comparison is filling that slot today.</p>
+      <dl class="finding__facts">
+        <dt>Effort</dt><dd>1–2 days for the study as an HTML page, gated PDF kept as the conversion</dd>
+        <dt>We'll know it worked</dt><dd>Impressions for "PMS API" searches and new referring domains within 60 days</dd>
+      </dl>
+    </article>
+
+    <article class="finding finding--high">
+      <div class="finding__head"><span class="sev sev--high">High</span><h3>Rebuild the connection page template</h3></div>
+      <p>For each partner: what data flows each way, two or three use cases, customer proof, a link to the matching developer docs, and how setup works. Hide empty sections instead of showing "No items found." Start with the ten partners that have the most search demand and the most Hapi customers. Add an OPERA Cloud page, since searchers look for OPERA Cloud and Oracle's integration platform (OHIP), not OPERA 5.</p>
+    </article>
+
+    <article class="finding finding--high">
+      <div class="finding__head"><span class="sev sev--high">High</span><h3>Make stayhapi.com the original source for our news</h3></div>
+      <p>Publish on our site first and syndicate three to seven days later. Ask syndication partners for a canonical link back where they allow it. Every release links to the matching product or connection page.</p>
+    </article>
+
+    <article class="finding finding--high">
+      <div class="finding__head"><span class="sev sev--high">High</span><h3>Merge duplicate pages and clean up leaked CMS slugs</h3></div>
+      <p>The Revinate partnership exists four times. Nemacolin, IHG, Margaritaville, Rocco Forte and others exist twice, plus <code>sevenrooms-2</code>, <code>shiji-2</code>, and one slug ending in <code>also-cover-on-website</code>. Each copy competes with the original. Redirect each duplicate to one canonical page.</p>
+    </article>
+
+    <article class="finding finding--high">
+      <div class="finding__head"><span class="sev sev--high">High</span><h3>Tell search engines who Hapi is, in one name</h3></div>
+      <p>On Bing, "Hapi" ranks us fifth, behind an investing app and the Egyptian god. Add Organization markup with our alternate names and profiles. Then settle the category name: the site currently calls us a connectivity partner, data infrastructure, a data-integrations platform, a cloud data hub and PMS middleware.</p>
+    </article>
+
+    <article class="finding finding--high">
+      <div class="finding__head"><span class="sev sev--high">High</span><h3>Bylines, article markup, alt text and page weight</h3></div>
+      <p>47 posts have no author and one says "Author 1." Every image has empty alt text, including 130+ partner logos. The homepage loads 200 images with the hero set to load last, and one product page carries a 2.9MB GIF.</p>
+    </article>
+
+    <article class="finding finding--high">
+      <div class="finding__head"><span class="sev sev--high">High</span><h3>Confirm permissions on two reposted articles</h3></div>
+      <p>Two third-party articles appear in full with the source field empty. Before changing anything, confirm what was agreed with the publishers, then add attribution and a canonical link, or unpublish.</p>
+    </article>
+
+    <article class="finding finding--medium">
+      <div class="finding__head"><span class="sev sev--medium">Medium</span><h3>Housekeeping</h3></div>
+      <ul>
+        <li>Placeholder text, "Bibendum amet at molestie mattis.", appears three times in the Connections menu on every page.</li>
+        <li><code>/product-overview</code> links to a 404 and still sells Data Streams, Finders and Guest CRM.</li>
+        <li>A second, empty H1 appears on 164 of 166 articles, and "Related Posts" shows the same six posts everywhere.</li>
+        <li>101 resources and 33 connection pages can only be reached through pagination.</li>
+        <li>Seven legal pages are in the sitemap.</li>
+        <li>Security headers beyond HSTS are missing, which hotel security reviews may ask about.</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="plan">
+  <div class="wrap--wide">
+    <h2 id="plan">The next 90 days</h2>
+    <div class="phases">
+      <div class="phase">
+        <div class="phase__when">Days 1–30</div>
+        <h3>Unblock</h3>
+        <ul>
+          <li>Bind template titles and descriptions</li>
+          <li>Redirect duplicates, add Organization markup</li>
+          <li>Remove placeholder text, fix old product links and hero loading</li>
+          <li>Agree on one category name and a publish-first rule for news</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase__when">Days 31–60</div>
+        <h3>Rebuild the storefront</h3>
+        <ul>
+          <li>PMS API Study live as a full page</li>
+          <li>Connection template v2 for the top ten partners</li>
+          <li>Bylines, article markup, alt text, image weight</li>
+          <li>A PMS integration hub page linking every connection page</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase__when">Days 61–90</div>
+        <h3>Compound</h3>
+        <ul>
+          <li>Connection template v2 on all partners</li>
+          <li>Guest data and data integration hubs, if search volume supports them</li>
+          <li>Partner link-back kit for our integration partners</li>
+          <li>Marketplace and directory listings audit</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">Prepared by Danny Cox for the Hapi team. Detailed findings for each area, with page-level evidence, are available on request.</div>
+</footer>
+
+</body>
+</html>

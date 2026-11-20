@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>stayhapi.com SEO Baseline</title>
+<meta name="robots" content="noindex">
+<!--DS-->
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap--wide">
+    <div class="masthead__bar">
+      <span class="wordmark">hapi</span>
+      <span class="pill pill--mint">Internal baseline</span>
+    </div>
+    <h1>Most of our site is invisible to search, and it's a two-hour fix to start.</h1>
+    <p class="lede">An SEO audit of all 246 pages on stayhapi.com. The site's positioning and writing are solid. Two unfinished Webflow templates are holding it back, and they generate 90% of our URLs.</p>
+    <dl class="meta">
+      <div><dt>Prepared by</dt><dd>Danny Cox, Head of Marketing</dd></div>
+      <div><dt>Date</dt><dd>November 17, 2026</dd></div>
+      <div><dt>Scope</dt><dd>All 246 sitemap URLs, 11 checks</dd></div>
+      <div><dt>Health score</dt><dd>49 / 100</dd></div>
+    </dl>
+  </div>
+</header>
+
+<main>
+
+<section class="section" aria-labelledby="map">
+  <div class="wrap--wide">
+    <h2 id="map">Every resource and connection page, one dot each</h2>
+    <p class="muted" style="max-width:var(--measure)">146 of our 223 CMS pages publish with an empty page title and no meta description. Google writes its own titles for them, usually from a bare heading like "Mews." These include the IHG case study, the Nemacolin story and both Oracle OPERA pages. Hover a dot to see the page.</p>
+    {{pagemap:data/cms-title-check.txt}}
+  </div>
+</section>
+
+<section class="section" aria-labelledby="why">
+  <div class="wrap">
+    <h2 id="why">Why this matters beyond SEO</h2>
+    <p>The 57 <code>/connections</code> pages are where a hotel or tech vendor checks whether we work with their systems. They're the closest thing we have to a storefront, and they are the weakest part of the site today:</p>
+    <div class="facts">
+      <div class="fact"><b>45 of 57</b><span>have no page title</span></div>
+      <div class="fact"><b>~97%</b><span>of each page is shared template text</span></div>
+      <div class="fact"><b>36</b><span>show "Data Streams: No items found"</span></div>
+    </div>
+    <p>Fixing these pages is SEO cleanup, and it's also the groundwork for any self-serve or partner-led motion. Someone who finds us through "[their PMS] integration" should land on a page that answers what flows, how fast, and who already runs it.</p>
+    <div class="callout callout--mint">
+      <p><strong>Our content already ranks, just not on our site.</strong> Copies of our press releases on Hospitality Net, Hotel-Online and Hotel Tech Report show up for four of six category searches we tested. hoteltech.review lists Hapi first among hotel API integration platforms, but doesn't link to us. Publishing on stayhapi.com first, then syndicating, captures rankings we've already earned.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="scores">
+  <div class="wrap">
+    <h2 id="scores">Scorecard</h2>
+    <div class="table-scroll">
+    <table class="scores">
+      <thead><tr><th>Area</th><th>Score</th><th>What's driving it</th></tr></thead>
+      <tbody>
+        <tr><td>On-page<div class="bar"><span style="width:36%"></span></div></td><td class="num">36</td><td>146 pages with no title or description</td></tr>
+        <tr><td>Structured data<div class="bar"><span style="width:12%"></span></div></td><td class="num">12</td><td>No Organization, Article or Product markup anywhere</td></tr>
+        <tr><td>AI search readiness<div class="bar"><span style="width:49%"></span></div></td><td class="num">49</td><td>"Hapi" isn't clearly one company to search engines; product pages have no quotable facts</td></tr>
+        <tr><td>Images<div class="bar"><span style="width:55%"></span></div></td><td class="num">55</td><td>Modern formats, but every image has empty alt text</td></tr>
+        <tr><td>Technical<div class="bar"><span style="width:58%"></span></div></td><td class="num">58</td><td>Indexing basics pass; old /products links, duplicate pages</td></tr>
+        <tr><td>Content<div class="bar"><span style="width:58%"></span></div></td><td class="num">58</td><td>Strong product copy and case studies; ~18 posts with no body</td></tr>
+        <tr><td>Performance (lab)<div class="bar"><span style="width:70%"></span></div></td><td class="num">~70</td><td>Hero images load late; a 2.9MB GIF on one product page</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="small muted" style="margin-top:var(--s4)">Weighted health score: 49 / 100.</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="fix">
+  <div class="wrap">
+    <h2 id="fix">What to fix, in order</h2>
+
+    <article class="finding finding--critical">
+      <div class="finding__head"><span class="sev sev--critical">Critical</span><h3>Bind page titles and descriptions in the two CMS templates</h3></div>
+      <p>101 resources and 45 connection pages ship with <code>&lt;title&gt;&lt;/title&gt;</code>. In Webflow's Collection template settings, bind SEO title, meta description and the social tags to CMS fields with a fallback to the item name.</p>
+      <dl class="finding__facts">
+        <dt>Effort</dt><dd>About an hour per template</dd>
+        <dt>We'll know it worked</dt><dd>A re-run of the page check shows zero empty titles, and Search Console impressions for these pages rise within six weeks</dd>
+        <dt>Unblocks</dt><dd>Every other content and integration-page fix below</dd>
+      </dl>
+    </article>
+
+    <article class="finding finding--critical">
+      <div class="finding__head"><span class="sev sev--critical">Critical</span><h3>Publish the 2026 PMS API Study, and the other empty posts</h3></div>
+      <p>About 18 resource pages are a headline and a date with no body, including the PMS API Study and the AI-Ready Data Framework. Every article links to the study through Related Posts, so a dead end is linked from every article. Original research is the asset most likely to earn links and AI citations, and a competitor's 2026 PMS API comparison is filling that slot today.</p>
+      <dl class="finding__facts">
+        <dt>Effort</dt><dd>1–2 days for the study as an HTML page, gated PDF kept as the conversion</dd>
+        <dt>We'll know it worked</dt><dd>Impressions for "PMS API" searches and new referring domains within 60 days</dd>
+      </dl>
+    </article>
+
+    <article class="finding finding--high">
+      <div class="finding__head"><span class="sev sev--high">High</span><h3>Rebuild the connection page template</h3></div>
+      <p>For each partner: what data flows each way, two or three use cases, customer proof, a link to the matching developer docs, and how setup works. Hide empty sections instead of showing "No items found." Start with the ten partners that have the most search demand and the most Hapi customers. Add an OPERA Cloud page, since searchers look for OPERA Cloud and Oracle's integration platform (OHIP), not OPERA 5.</p>
+    </article>
+
+    <article class="finding finding--high">
+      <div class="finding__head"><span class="sev sev--high">High</span><h3>Make stayhapi.com the original source for our news</h3></div>
+      <p>Publish on our site first and syndicate three to seven days later. Ask syndication partners for a canonical link back where they allow it. Every release links to the matching product or connection page.</p>
+    </article>
+
+    <article class="finding finding--high">
+      <div class="finding__head"><span class="sev sev--high">High</span><h3>Merge duplicate pages and clean up leaked CMS slugs</h3></div>
+      <p>The Revinate partnership exists four times. Nemacolin, IHG, Margaritaville, Rocco Forte and others exist twice, plus <code>sevenrooms-2</code>, <code>shiji-2</code>, and one slug ending in <code>also-cover-on-website</code>. Each copy competes with the original. Redirect each duplicate to one canonical page.</p>
+    </article>
+
+    <article class="finding finding--high">
+      <div class="finding__head"><span class="sev sev--high">High</span><h3>Tell search engines who Hapi is, in one name</h3></div>
+      <p>On Bing, "Hapi" ranks us fifth, behind an investing app and the Egyptian god. Add Organization markup with our alternate names and profiles. Then settle the category name: the site currently calls us a connectivity partner, data infrastructure, a data-integrations platform, a cloud data hub and PMS middleware.</p>
+    </article>
+
+    <article class="finding finding--high">
+      <div class="finding__head"><span class="sev sev--high">High</span><h3>Bylines, article markup, alt text and page weight</h3></div>
+      <p>47 posts have no author and one says "Author 1." Every image has empty alt text, including 130+ partner logos. The homepage loads 200 images with the hero set to load last, and one product page carries a 2.9MB GIF.</p>
+    </article>
+
+    <article class="finding finding--high">
+      <div class="finding__head"><span class="sev sev--high">High</span><h3>Confirm permissions on two reposted articles</h3></div>
+      <p>Two third-party articles appear in full with the source field empty. Before changing anything, confirm what was agreed with the publishers, then add attribution and a canonical link, or unpublish.</p>
+    </article>
+
+    <article class="finding finding--medium">
+      <div class="finding__head"><span class="sev sev--medium">Medium</span><h3>Housekeeping</h3></div>
+      <ul>
+        <li>Placeholder text, "Bibendum amet at molestie mattis.", appears three times in the Connections menu on every page.</li>
+        <li><code>/product-overview</code> links to a 404 and still sells Data Streams, Finders and Guest CRM.</li>
+        <li>A second, empty H1 appears on 164 of 166 articles, and "Related Posts" shows the same six posts everywhere.</li>
+        <li>101 resources and 33 connection pages can only be reached through pagination.</li>
+        <li>Seven legal pages are in the sitemap.</li>
+        <li>Security headers beyond HSTS are missing, which hotel security reviews may ask about.</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="plan">
+  <div class="wrap--wide">
+    <h2 id="plan">The next 90 days</h2>
+    <div class="phases">
+      <div class="phase">
+        <div class="phase__when">Days 1–30</div>
+        <h3>Unblock</h3>
+        <ul>
+          <li>Bind template titles and descriptions</li>
+          <li>Redirect duplicates, add Organization markup</li>
+          <li>Remove placeholder text, fix old product links and hero loading</li>
+          <li>Agree on one category name and a publish-first rule for news</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase__when">Days 31–60</div>
+        <h3>Rebuild the storefront</h3>
+        <ul>
+          <li>PMS API Study live as a full page</li>
+          <li>Connection template v2 for the top ten partners</li>
+          <li>Bylines, article markup, alt text, image weight</li>
+          <li>A PMS integration hub page linking every connection page</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase__when">Days 61–90</div>
+        <h3>Compound</h3>
+        <ul>
+          <li>Connection template v2 on all partners</li>
+          <li>Guest data and data integration hubs, if search volume supports them</li>
+          <li>Partner link-back kit for our integration partners</li>
+          <li>Marketplace and directory listings audit</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">Prepared by Danny Cox for the Hapi team. Detailed findings for each area, with page-level evidence, are available on request.</div>
+</footer>
+
+</body>
+</html>
