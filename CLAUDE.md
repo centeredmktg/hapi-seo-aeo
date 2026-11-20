@@ -49,11 +49,12 @@ From `data/geo.md` (AI search readiness 49/100) and `data/agentic.md`:
 - **Facts come from evidence.** Every number in the report traces to a file in `reports/seo-audit-2026-11-17/data/`. When Search Console or GA4 data arrives, it replaces estimates. Note what changed rather than silently overwriting.
 - **Scope of edits.** Read the live site and Webflow freely. Changes to Webflow go in as drafts or staged changes and need Danny's approval. Never publish or delete CMS items.
 - **Don't name employees outside leadership, and don't paste customer data into prompts** beyond what a task needs.
+- **Learning:** to teach this workspace something new (a playbook, a course, another team's process, an AEO guide), run `/kung-fu` on it. New skills go in `.claude/skills/`, frameworks in `context/frameworks/`, the registry in `context/capabilities.yaml`. Never edit installed plugins.
 - **Writing:** plain verbs, sentence case, no em dashes, no hype. Run `humanizer` (hapi-kit) on anything team-facing.
 
 ## Tools
 
-- **hapi-kit plugin (v1.4.1).** Skills for messaging, content QA and briefs. The ones used most here:
+- **hapi-kit plugin (v1.5.0).** Skills for messaging, content QA and briefs. The ones used most here:
   - `cms-content-qa`: re-run the title and body check. Use sitemap mode now, and Webflow mode once there's a token.
   - `content-brief` and `content-draft`.
   - `fact-check` and `humanizer`.

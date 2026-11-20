@@ -1,0 +1,4 @@
+# Capability registry. Maintained by /kung-fu. One entry per capability considered.
+# Fields: id, name, category (<area>/<sub-area>), status (stub|active|dormant|merged|trashed),
+#         destination (skill|framework|script|null), lives_at, serves, source_file, created, notes
+[]
