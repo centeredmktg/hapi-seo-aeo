@@ -54,10 +54,11 @@ From `data/geo.md` (AI search readiness 49/100) and `data/agentic.md`:
 
 ## Tools
 
-- **hapi-kit plugin (v1.5.0).** Skills for messaging, content QA and briefs. The ones used most here:
+- **hapi-kit plugin (v1.6.0).** Skills for messaging, content QA and briefs. The ones used most here:
   - `cms-content-qa`: re-run the title and body check. Use sitemap mode now, and Webflow mode once there's a token.
   - `content-brief` and `content-draft`.
   - `fact-check` and `humanizer`.
+  - `site-launch-qa` before any Webflow publish of structural changes (schema, redirects, templates); `goldfish-review` on the positioning doc and roadmap before they go to the team.
 - **seo-suite (claude-seo, via the hapi-kit marketplace).**
   - `/seo audit https://www.stayhapi.com` re-runs the full audit.
   - `/seo google` adds Search Console, CrUX and GA4 data once credentials are set.

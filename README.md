@@ -11,7 +11,7 @@ The day-one search baseline for stayhapi.com (2026-11-17), the team-facing repor
 ```bash
 git clone <this repo> hapi-seo-aeo && cd hapi-seo-aeo
 # Skills: hapi-kit (includes the seo-suite marketplace entry)
-git clone --branch v1.5.0 https://github.com/centeredmktg/hapi-kit.git ~/hapi-kit
+git clone --branch v1.6.0 https://github.com/centeredmktg/hapi-kit.git ~/hapi-kit
 claude plugin marketplace add ~/hapi-kit
 claude plugin install hapi-kit@hapi-kit
 claude plugin install seo-suite@hapi-kit    # for /seo audit, /seo google, /seo drift
